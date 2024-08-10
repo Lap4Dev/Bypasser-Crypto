@@ -41,7 +41,7 @@ def referral_info_msg(ref_link: str, total_ref_count: int = 0, active_ref_count:
            f'<i>та отримай повний доступ до бота</i> 💠\n\n' \
            f'👨‍👨‍👦‍👦 <b>Всього запрошено:</b> <code>{total_ref_count}</code>\n' \
            f'🔋 <b>Активні реферали: <code>{active_ref_count}</code></b>\n' \
-           f'♻️ <b>Конверсія:</b> <code>{(active_ref_count / total_ref_count)%.2}%</code>\n\n' \
+           f'♻️ <b>Конверсія:</b> <code>{(active_ref_count / total_ref_count * 100):.2f}%</code>\n\n' \
            f'📎 <b>Лінк:</b> {ref_link}'
 
 
