@@ -7,6 +7,7 @@ from src.config.constants import CD_REFF_PROG, CD_MAIN_MENU, REFERRAL_PROGRAM_IM
 from src.config.templates import referral_info_msg
 from src.keyboards import inline
 from src.repositories import SqlAlchemyUserRepository
+from src.utils.bot import create_ref_link
 
 router = Router()
 
@@ -16,7 +17,7 @@ async def referral_program(query: CallbackQuery, session):
     user_id = query.from_user.id
     user_repo = SqlAlchemyUserRepository(session)
 
-    referral_link = await create_start_link(bot=query.bot, payload=f"ref_{user_id}")
+    referral_link = await create_ref_link(query.bot, user_id)
     photo_file = FSInputFile(settings.IMAGES_PATH / REFERRAL_PROGRAM_IMAGE_NAME)
     media = InputMediaPhoto(
         media=photo_file,
