@@ -110,7 +110,7 @@ class SqlAlchemyUserRepository(IUserRepository):
 
         total_referrals_count, active_referrals_count = result.first()
 
-        return total_referrals_count, active_referrals_count
+        return total_referrals_count or 0, active_referrals_count or 0
 
     async def verify_user(self, user_id: int) -> bool:
 
