@@ -14,6 +14,8 @@ class Settings(BaseSettings):
     DB_ECHO: bool = True
     BACKUP_CHANNEL_ID: int | None
 
+    HAMSTER_KEYS_LIMIT_PER_DAY: int = 4
+
     LOG_LEVEL: str = 'INFO'
     BLUM_REF_LINK: str = 'https://t.me/BlumCryptoBot/app?startapp=ref_Ae49shKgSM'
     GRASS_REF_LINK: str = 'https://app.getgrass.io/register/?referralCode=hJxVzwJX7vD7CQ5'
