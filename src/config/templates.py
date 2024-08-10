@@ -1,4 +1,5 @@
 from src.config import settings
+from src.utils.text import text_progress_bar
 
 BOT_NAME = 'Bypasser'
 START_COMMAND_DESCRIPTION = 'Почати взаємодію із ботом'
@@ -27,8 +28,11 @@ CHOOSE_HAMSTER_GAME = '<b>Вибери гру, яку хочеш 🦆кнуть 
 CODE_NOT_FOUND = 'Сорі дружище, коди закінчилися 🤯 Але незабаром вони з\'являться. Спробуй трішки пізніше 🥷'
 
 
-def code_generated_msg(code: str, game_name: str, hamster_combat_link) -> str:
-    return f'🤝 Тримай код для: <a href="{hamster_combat_link}">{game_name}</a>\n\n' \
+def code_generated_msg(code: str, game_name: str, hamster_combat_link, keys_used: int, keys_limit) -> str:
+    return f'🤝 Тримай код для: <a href="{hamster_combat_link}">{game_name}</a>\n' \
+           f'🔋 <b>Ключів залишилося:</b> {keys_limit-keys_used}/{keys_limit}\n\n' \
+           f'📊 <b>Прогрес використання:</b>\n' \
+           f'{text_progress_bar(capacity=keys_limit, used=keys_used)}\n\n' \
            f'🔑 Ключ: <code>{code}</code>'
 
 
@@ -37,3 +41,14 @@ def referral_info_msg(ref_link: str, ref_count: int = 0) -> str:
            f'<i>та отримай повний доступ до бота</i> 💠\n\n' \
            f'👨‍👨‍👦‍👦 <b>Всього запрошено:</b> <code>{ref_count}</code>\n\n' \
            f'📎 <b>Лінк:</b> {ref_link}'
+
+
+def keys_limit_msg(ref_link: str, keys_used: int = 0, keys_limit: int = 0) -> str:
+    limit_msg = "Друже, на сьогодні ти досяг ліміту генерації ключів для цієї гри.\n\n" \
+        if keys_used >= keys_limit else ""
+
+    return f'{limit_msg}' \
+           f'🪫 <b>Ключів залишилося:</b> {keys_limit-keys_used}/{keys_limit}\n\n' \
+           f'<b>Для того, щоб отримати більше ключів - запроси друга. Кожен друг = +2 ключа</b>\n\n' \
+           f'📎<b>Посилання для друга:</b>\n{ref_link}'
+
