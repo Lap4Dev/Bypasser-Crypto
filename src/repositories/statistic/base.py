@@ -29,3 +29,7 @@ class IStatisticRepository(ABC):
     @abstractmethod
     async def get_or_create(self, user_id: int, name: str) -> Statistic:
         ...
+
+    @abstractmethod
+    async def reset_all_by_name(self, name: str) -> None:
+        ...

@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, update
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -51,3 +51,12 @@ class SqlAlchemyStatisticRepository(IStatisticRepository):
             await self.session.commit()
             await self.session.refresh(statistic)
         return statistic
+
+    async def reset_all_by_name(self, name: str) -> None:
+        stmt = (
+            update(Statistic)
+            .where(Statistic.name == name)
+            .values(value=0)
+        )
+        await self.session.execute(stmt)
+        await self.session.commit()
