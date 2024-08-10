@@ -2,6 +2,7 @@ import asyncio
 import datetime
 
 from aiogram import Bot
+from aiogram.enums import ChatMemberStatus
 from aiogram.types import FSInputFile
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
@@ -9,7 +10,12 @@ from src.config import settings, logger
 from src.config.constants import DB_STATISTIC_HAMSTER_GAMES
 from src.loader import db_helper
 from src.projects.hamster_combat.schedule import hamster_codes_filling_if_necessary
-from src.repositories import SqlAlchemyStatisticRepository
+from src.repositories import (
+    SqlAlchemyStatisticRepository,
+    SqlAlchemyUserRepository,
+    SqlAlchemyPartnerChannelRepository
+)
+
 hamster_task_lock = asyncio.Lock()
 
 
@@ -47,8 +53,34 @@ async def scheduled_reset_keys_used():
         logger.error(f'Reset keys used error: {ex}')
 
 
+async def update_verification_status(bot: Bot) -> None:
+    """
+    Обновляет статус is_verified для всех пользователей в базе данных.
+    Если пользователь больше не подписан на канал, его статус is_verified устанавливается в False.
+    """
+
+    try:
+        async with db_helper.get_db() as session:
+            user_repo = SqlAlchemyUserRepository(session)
+            partners_repo = SqlAlchemyPartnerChannelRepository(session)
+            partners = await partners_repo.get_all()
+            verified_users = await user_repo.get_all_verified()
+            for user in verified_users:
+                for partner in partners:
+                    try:
+                        member = await bot.get_chat_member(partner.channel_id, user.user_id)
+                        if member.status in [ChatMemberStatus.LEFT, ChatMemberStatus.KICKED]:
+                            await user_repo.set_field_value(user.user_id, 'is_verified', False)
+                    except Exception as e:
+                        await user_repo.set_field_value(user.user_id, 'is_verified', False)
+                        logger.error(f"Error while checking user {user.user_id}: {e}")
+    except Exception as ex:
+        logger.error(f'Error while update_verification_status: {ex}')
+
+
 def setup_schedule_tasks(scheduler: AsyncIOScheduler, bot: Bot):
     scheduler.add_job(scheduled_hamster_task, 'interval', minutes=1)
     scheduler.add_job(scheduled_reset_keys_used, 'cron', hour=23, minute=0)
     scheduler.add_job(scheduled_backup_db, 'cron', hour=0, minute=0, kwargs={'bot': bot})
+    scheduler.add_job(update_verification_status, 'cron', hour=1, minute=0, kwargs={'bot': bot})
     logger.info('Jobs successfully initialized !')
