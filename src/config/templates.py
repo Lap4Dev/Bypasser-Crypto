@@ -36,10 +36,12 @@ def code_generated_msg(code: str, game_name: str, hamster_combat_link, keys_used
            f'🔑 Ключ: <code>{code}</code>'
 
 
-def referral_info_msg(ref_link: str, ref_count: int = 0) -> str:
+def referral_info_msg(ref_link: str, total_ref_count: int = 0, active_ref_count: int = 0) -> str:
     return f'<b>Пригласи друга, будь другом</b> 🫣\n' \
            f'<i>та отримай повний доступ до бота</i> 💠\n\n' \
-           f'👨‍👨‍👦‍👦 <b>Всього запрошено:</b> <code>{ref_count}</code>\n\n' \
+           f'👨‍👨‍👦‍👦 <b>Всього запрошено:</b> <code>{total_ref_count}</code>\n' \
+           f'🔋 <b>Активні реферали: <code>{active_ref_count}</code></b>\n' \
+           f'♻️ <b>Конверсія:</b> <code>{(active_ref_count / total_ref_count)%.2}%</code>\n\n' \
            f'📎 <b>Лінк:</b> {ref_link}'
 
 
