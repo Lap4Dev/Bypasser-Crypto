@@ -1,6 +1,6 @@
 from typing import Any, Tuple
 
-from sqlalchemy import select, update, func, Sequence, case
+from sqlalchemy import select, update, func, case
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -110,7 +110,7 @@ class SqlAlchemyUserRepository(IUserRepository):
 
         total_referrals_count, active_referrals_count = result.first()
 
-        return active_referrals_count, total_referrals_count
+        return total_referrals_count, active_referrals_count
 
     async def verify_user(self, user_id: int) -> bool:
 
@@ -130,9 +130,9 @@ class SqlAlchemyUserRepository(IUserRepository):
         else:
             return False
 
-    async def get_all_verified(self) -> Sequence[TelegramUser]:
+    async def get_all_verified(self) -> list[TelegramUser]:
         result = await self.session.execute(
             select(self.model)
             .where(self.model.is_verified.is_(True))
         )
-        return result.scalars().all()
+        return list(result.scalars().all())
