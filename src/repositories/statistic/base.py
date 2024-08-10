@@ -1,11 +1,14 @@
 from abc import ABC, abstractmethod
-from typing import Tuple, Any
 
-from src.database.models import TelegramUser, Statistic
+from src.database.models import Statistic
 
 
 class IStatisticRepository(ABC):
     model = None
+
+    @abstractmethod
+    async def decrement_value(self, user_id: int, name: str) -> int:
+        ...
 
     @abstractmethod
     async def increment_value(self, user_id: int, name: str) -> int:

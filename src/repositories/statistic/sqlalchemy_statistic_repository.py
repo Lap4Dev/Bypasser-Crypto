@@ -18,6 +18,14 @@ class SqlAlchemyStatisticRepository(IStatisticRepository):
         await self.session.commit()
         return statistic.value
 
+    async def decrement_value(self, user_id: int, name: str) -> int:
+        statistic = await self.get_or_create(user_id, name)
+        if statistic.value > 0:
+            statistic.value -= 1
+
+        await self.session.commit()
+        return statistic.value
+
     async def reset_value(self, user_id: int, name: str) -> None:
         statistic = await self.get_or_create(user_id, name)
         statistic.value = 0
