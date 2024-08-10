@@ -19,11 +19,13 @@ async def referral_program(query: CallbackQuery, session):
 
     referral_link = await create_ref_link(query.bot, user_id)
     photo_file = FSInputFile(settings.IMAGES_PATH / REFERRAL_PROGRAM_IMAGE_NAME)
+    total_referrals_count, active_referrals_count = await user_repo.get_referral_counts(user_id)
     media = InputMediaPhoto(
         media=photo_file,
         caption=referral_info_msg(
             referral_link,
-            await user_repo.get_referral_count_of(user_id)
+            active_ref_count=active_referrals_count,
+            total_ref_count=total_referrals_count
         )
     )
     await query.message.edit_media(
