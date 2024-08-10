@@ -18,9 +18,9 @@ def create_media(photo_path, caption) -> InputMediaPhoto:
 
 
 async def get_keys_limit(user_repo, statistic_repo, user_id, game_id):
-    ref_count = await user_repo.get_referral_count_of(user_id)
+    total_referrals_count, active_referrals_count = await user_repo.get_referral_counts(user_id)
     keys_used = await statistic_repo.get_value(user_id, c.DB_STATISTIC_HAMSTER_GAMES[game_id])
-    keys_limit = settings.HAMSTER_KEYS_LIMIT_PER_DAY + ref_count * 2
+    keys_limit = settings.HAMSTER_KEYS_LIMIT_PER_DAY + active_referrals_count * 2
     return keys_used, keys_limit
 
 
