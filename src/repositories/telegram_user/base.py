@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Tuple, Any
+from typing import Tuple, Any, Sequence
 
 from src.database.models import TelegramUser
 
@@ -32,9 +32,13 @@ class IUserRepository(ABC):
         ...
 
     @abstractmethod
-    async def get_referral_count_of(self, user_id: int) -> int:
+    async def get_referral_counts(self, user_id: int) -> Tuple[int, int]:
         ...
 
     @abstractmethod
     async def verify_user(self, user_id: int) -> bool:
+        ...
+
+    @abstractmethod
+    async def get_all_verified(self) -> Sequence[TelegramUser]:
         ...

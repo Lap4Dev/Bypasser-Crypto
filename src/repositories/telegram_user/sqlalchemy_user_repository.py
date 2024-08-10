@@ -1,6 +1,6 @@
 from typing import Any, Tuple
 
-from sqlalchemy import select, update, func
+from sqlalchemy import select, update, func, Sequence, case
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -14,7 +14,7 @@ class SqlAlchemyUserRepository(IUserRepository):
     def __init__(self, session: AsyncSession):
         self.session: AsyncSession = session
 
-    async def get_or_create(self, user_id: int, username: str, first_name: str, last_name: str, referrer_id: int = None)\
+    async def get_or_create(self, user_id: int, username: str, first_name: str, last_name: str, referrer_id: int = None) \
             -> Tuple[TelegramUser, bool]:
         user_data = dict(
             user_id=user_id,
@@ -94,14 +94,23 @@ class SqlAlchemyUserRepository(IUserRepository):
         result = await self.session.execute(select(self.model).filter_by(user_id=user_id))
         return result.scalar_one_or_none()
 
-    async def get_referral_count_of(self, user_id: int) -> int:
+    async def get_referral_counts(self, user_id: int) -> Tuple[int, int]:
         result = await self.session.execute(
-            select(func.count(self.model.user_id))
+            select(
+                func.count(self.model.user_id),
+                func.sum(
+                    case(
+                        (self.model.is_verified.is_(True), 1),
+                        else_=0
+                    )
+                )
+            )
             .where(self.model.referrer_id == user_id)
         )
-        referrals_count = result.scalar_one()
 
-        return referrals_count
+        total_referrals_count, active_referrals_count = result.first()
+
+        return active_referrals_count, total_referrals_count
 
     async def verify_user(self, user_id: int) -> bool:
 
@@ -120,3 +129,10 @@ class SqlAlchemyUserRepository(IUserRepository):
             return True
         else:
             return False
+
+    async def get_all_verified(self) -> Sequence[TelegramUser]:
+        result = await self.session.execute(
+            select(self.model)
+            .where(self.model.is_verified.is_(True))
+        )
+        return result.scalars().all()
