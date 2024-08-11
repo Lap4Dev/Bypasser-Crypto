@@ -1,6 +1,7 @@
 from typing import Callable, Dict, Any, Awaitable
 
 from aiogram import BaseMiddleware
+from aiogram.enums import ChatType
 from aiogram.types import Message, CallbackQuery
 
 from src.config import logger
@@ -20,6 +21,10 @@ class LoggingMiddleware(BaseMiddleware):
             event: Message | CallbackQuery,
             data: Dict[str, Any]
     ) -> Any:
+
+        chat_type = event.message.chat.type if isinstance(event, CallbackQuery) else event.chat.type
+        if chat_type != ChatType.PRIVATE:
+            return
 
         user = event.from_user
         state = data.get('state')
