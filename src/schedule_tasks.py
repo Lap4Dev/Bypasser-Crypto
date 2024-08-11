@@ -60,6 +60,7 @@ async def update_verification_status(bot: Bot) -> None:
     """
 
     try:
+        count_of_un_verified_changes = 0
         async with db_helper.get_db() as session:
             user_repo = SqlAlchemyUserRepository(session)
             partners_repo = SqlAlchemyPartnerChannelRepository(session)
@@ -71,9 +72,12 @@ async def update_verification_status(bot: Bot) -> None:
                         member = await bot.get_chat_member(partner.channel_id, user.user_id)
                         if member.status in [ChatMemberStatus.LEFT, ChatMemberStatus.KICKED]:
                             await user_repo.set_field_value(user.user_id, 'is_verified', False)
+                            count_of_un_verified_changes += 1
                     except Exception as e:
                         await user_repo.set_field_value(user.user_id, 'is_verified', False)
+                        count_of_un_verified_changes += 1
                         logger.error(f"Error while checking user {user.user_id}: {e}")
+        logger.info(f'Updating verification status has been ended. Total updated: {count_of_un_verified_changes}')
     except Exception as ex:
         logger.error(f'Error while update_verification_status: {ex}')
 
