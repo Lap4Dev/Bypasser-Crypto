@@ -1,7 +1,12 @@
+from typing import TYPE_CHECKING
+
 from sqlalchemy import String, BigInteger
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.database.models.base_model import Base
+if TYPE_CHECKING:
+    from .statistic import Statistic
+    from .confidential_data import ConfidentialData
 
 
 class TelegramUser(Base):
@@ -15,3 +20,5 @@ class TelegramUser(Base):
     is_verified: Mapped[bool] = mapped_column(nullable=True, default=False)
 
     statistics: Mapped[list["Statistic"]] = relationship("Statistic", back_populates="user")
+    confidential_data: Mapped["ConfidentialData"] = relationship("ConfidentialData", back_populates="user",
+                                                                 uselist=False, cascade="all, delete-orphan")
