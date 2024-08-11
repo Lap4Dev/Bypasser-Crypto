@@ -9,6 +9,6 @@ if TYPE_CHECKING:
 
 class ConfidentialData(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("telegramusers.user_id"), nullable=False)
-    tg_query_hashed: Mapped[str] = mapped_column(String(1024))
-
+    name: Mapped[str] = mapped_column(String(32))
+    value: Mapped[str] = mapped_column(String(2048), nullable=False, default='')
     user: Mapped["TelegramUser"] = relationship("TelegramUser", back_populates="confidential_data")
