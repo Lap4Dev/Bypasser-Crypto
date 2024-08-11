@@ -1,7 +1,7 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
 
-from src.callback_queries import HamsterGame
+from src.callback_data import HamsterGame
 from src.config import constants as c
 from src.config import settings
 from src.config import templates as t
@@ -31,7 +31,7 @@ async def send_keys_limit_message(query: CallbackQuery, keys_used: int, keys_lim
 @router.callback_query(F.data == c.CD_HAMSTER_KEY)
 async def get_hamster_games(query: CallbackQuery):
     media = create_media(settings.IMAGES_PATH / c.HAMSTER_IMAGE_NAME, t.CHOOSE_HAMSTER_GAME)
-    await query.message.edit_media(media=media, reply_markup=builder.get_hamster_games(go_back_to=c.CD_MAIN_MENU))
+    await query.message.edit_media(media=media, reply_markup=builder.get_hamster_games(go_back_to=c.HAMSTER_KOMBAT))
 
 
 @router.callback_query(HamsterGame.filter())

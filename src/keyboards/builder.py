@@ -1,7 +1,7 @@
 from aiogram.types import InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from src.callback_queries import HamsterGame
+from src.callback_data import HamsterGame
 from src.config.constants import CHECK_SUBSCRIPTION, HAMSTER_GAMES, GO_BACK
 from src.schemas import PartnerChannelSchema
 

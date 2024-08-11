@@ -14,6 +14,10 @@ class Settings(BaseSettings):
     DB_ECHO: bool = True
     BACKUP_CHANNEL_ID: int | None
 
+    SUPPORT_LINK: str
+    OFFICIAL_CHANNEL_LINK: str
+    OFFICIAL_CHAT_LINK: str
+
     HAMSTER_KEYS_LIMIT_PER_DAY: int = 4
 
     LOG_LEVEL: str = 'INFO'
