@@ -1,20 +1,15 @@
 from aiogram import Router, F
-from aiogram.types import CallbackQuery, FSInputFile, InputMediaPhoto
+from aiogram.types import CallbackQuery
 
 from src.callback_queries import HamsterGame
-from src.config import settings
 from src.config import constants as c
+from src.config import settings
 from src.config import templates as t
 from src.keyboards import builder, inline
 from src.repositories import SqlAlchemyHamsterCodeRepository, SqlAlchemyStatisticRepository, SqlAlchemyUserRepository
-from src.utils.bot import create_ref_link
+from src.utils.bot import create_ref_link, create_media
 
 router = Router()
-
-
-def create_media(photo_path, caption) -> InputMediaPhoto:
-    photo_file = FSInputFile(photo_path)
-    return InputMediaPhoto(media=photo_file, caption=caption)
 
 
 async def get_keys_limit(user_repo, statistic_repo, user_id, game_id):
