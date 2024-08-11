@@ -62,7 +62,7 @@ class PartnersMiddleware(BaseMiddleware):
         )
         if not is_member:
             if isinstance(event, Message):
-                if CMD_START in event.text:
+                if event.text and CMD_START in event.text:
                     await process_user(event, data.get('session'))
 
                 return await self.partners_checker.send_warning_message(event.answer_photo)
