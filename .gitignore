@@ -1,4 +1,6 @@
 # Byte-compiled / optimized / DLL files
+.dev.env
+.prod.env
 ngrok.yml
 .idea
 notepad
@@ -127,7 +129,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+.dev.env
 .venv
 env/
 venv/

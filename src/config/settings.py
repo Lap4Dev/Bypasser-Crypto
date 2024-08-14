@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from pydantic import SecretStr
@@ -39,7 +40,7 @@ class Settings(BaseSettings):
         return f"sqlite:///{self.DB_PATH}"
 
     class Config:
-        env_file = BASE_DIR / '.env'
+        env_file = BASE_DIR / os.getenv('ENV_FILE', '.dev.env')
         env_file_encoding = 'utf-8'
 
 
