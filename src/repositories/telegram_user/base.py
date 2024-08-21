@@ -42,3 +42,7 @@ class IUserRepository(ABC):
     @abstractmethod
     async def get_all_verified(self) -> Sequence[TelegramUser]:
         ...
+
+    @abstractmethod
+    async def get_all_user_ids(self) -> list[TelegramUser]:
+        ...

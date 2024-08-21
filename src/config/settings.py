@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+from aiocryptopay import Networks
 from pydantic import SecretStr
 
 from pydantic_settings import BaseSettings
@@ -19,14 +20,19 @@ class Settings(BaseSettings):
 
     LOG_LEVEL: str = 'DEBUG'
     LOG_FILE_PATH: str | Path = BASE_DIR / 'bot.log'
-    IMAGES_PATH: str | Path = BASE_DIR / 'src' / 'assets'
+    IMAGES_PATH: str | Path = BASE_DIR / 'assets'
 
     DB_NAME: str
     DB_ECHO: bool = True
 
     CRYPTO_BOT_API_KEY: str
+    CRYPTO_BOT_NETWORK: str = Networks.MAIN_NET
+
+    SECRET_ENCODE_KEY: str = 'mysecretkey'
 
     BACKUP_CHANNEL_ID: int | None
+    INSTRUCTION_CHANNEL_ID: int
+    BOT_LINK: str
     SUPPORT_LINK: str
     OFFICIAL_CHANNEL_LINK: str
     OFFICIAL_CHAT_LINK: str

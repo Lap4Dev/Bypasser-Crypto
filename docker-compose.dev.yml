@@ -8,6 +8,7 @@ services:
       context: .
     environment:
       - ENV_FILE=.dev.env
+      - TZ=Europe/Kiev
     working_dir: "/bot"
     volumes:
       - .:/bot

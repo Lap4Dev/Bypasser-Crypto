@@ -136,3 +136,9 @@ class SqlAlchemyUserRepository(IUserRepository):
             .where(self.model.is_verified.is_(True))
         )
         return list(result.scalars().all())
+
+    async def get_all_user_ids(self) -> list[int]:
+        result = await self.session.execute(
+            select(self.model.user_id)
+        )
+        return list(result.scalars().all())

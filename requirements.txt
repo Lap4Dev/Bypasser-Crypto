@@ -7,3 +7,5 @@ aiosqlite~=0.20.0
 alembic~=1.13.2
 aiohttp~=3.9.5
 APScheduler~=3.10.4
+aiocryptopay~=0.4.4
+fake-useragent~=1.5.1

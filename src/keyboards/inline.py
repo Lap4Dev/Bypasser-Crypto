@@ -1,6 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from src.callback_data import Subscription
 from src.config import constants as c, settings
 from src.config import templates as t
 
@@ -19,10 +18,22 @@ def go_back_btn(go_to: str) -> InlineKeyboardButton:
     return InlineKeyboardButton(text=c.GO_BACK, callback_data=go_to)
 
 
+def go_menu_btn() -> InlineKeyboardButton:
+    return InlineKeyboardButton(text=c.MENU, callback_data=c.CD_MAIN_MENU)
+
+
 def go_back_to(go_to: str):
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [go_back_btn(go_to)],
+        ]
+    )
+
+
+def get_close():
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text=c.CLOSE, callback_data=c.CD_CLOSE)],
         ]
     )
 
@@ -46,12 +57,14 @@ def get_hamster_auto_claimer_menu(go_to: str):
     )
 
 
-def get_purchase_subscription(product_id: int, subscription_price: int, go_back: str) -> InlineKeyboardMarkup:
+def get_purchase_subscription(subscription_price: int, payment_url: str, go_back: str) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [InlineKeyboardButton(
                 text=t.buy_subscription_btn_text(subscription_price),
-                callback_data=Subscription(product_id=product_id).pack())],
+                # callback_data=Subscription(product_id=product_id).pack())],
+                url=payment_url
+            )],
             [go_back_btn(go_back)],
         ]
     )
@@ -66,3 +79,45 @@ def get_info(go_to: str):
             [go_back_btn(go_to)],
         ]
     )
+
+
+def get_support():
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text=c.SUPPORT, url=settings.SUPPORT_LINK)],
+            [InlineKeyboardButton(text=c.MENU, callback_data=c.CD_MAIN_MENU)],
+        ]
+    )
+
+
+def get_claimer_menu(is_claimer_run: bool, is_empty_token: bool, go_to: str):
+    keyboard = []
+
+    if is_empty_token:
+        keyboard.append([InlineKeyboardButton(text=c.SET_TOKEN, callback_data=c.CD_SET_TOKEN)])
+    else:
+        if is_claimer_run:
+            keyboard.append([InlineKeyboardButton(text=c.STOP_CLAIMER, callback_data=c.CD_STOP_CLAIMER)])
+        else:
+            keyboard.append([InlineKeyboardButton(text=c.RUN_CLAIMER, callback_data=c.CD_RUN_CLAIMER)])
+
+        keyboard.append([InlineKeyboardButton(text=c.CHANGE_TOKEN, callback_data=c.CD_CHANGE_TOKEN)])
+
+    keyboard.append([go_back_btn(go_to), ])
+
+    return InlineKeyboardMarkup(inline_keyboard=keyboard)
+
+
+def cancel(go_to: str) -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text=c.CANCEL, callback_data=go_to)],
+        ]
+    )
+
+
+def mailing_confirm():
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text=c.CONFIRM_SENDING, callback_data=c.CD_CONFIRM_SENDING)],
+        [InlineKeyboardButton(text=c.CANCEL, callback_data=c.CD_CLOSE)],
+    ])

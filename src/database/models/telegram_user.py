@@ -7,6 +7,8 @@ from src.database.models.base_model import Base
 if TYPE_CHECKING:
     from .statistic import Statistic
     from .confidential_data import ConfidentialData
+    from .subscription import Subscription
+    from .payment import Payment
 
 
 class TelegramUser(Base):
@@ -20,4 +22,6 @@ class TelegramUser(Base):
     is_verified: Mapped[bool] = mapped_column(nullable=True, default=False)
 
     statistics: Mapped[list["Statistic"]] = relationship("Statistic", back_populates="user")
-    confidential_data: Mapped["ConfidentialData"] = relationship("ConfidentialData", back_populates="user", cascade="all, delete-orphan")
+    confidential_data: Mapped["ConfidentialData"] = relationship("ConfidentialData", back_populates="user")
+    subscriptions: Mapped[list["Subscription"]] = relationship("Subscription", back_populates="user")
+    payments: Mapped[list["Payment"]] = relationship("Payment", back_populates="user")

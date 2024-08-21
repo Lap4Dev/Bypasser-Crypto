@@ -20,6 +20,9 @@ class GameRepository:
         2: Game('Chain Cube 2048', 'd1690a07-3780-4068-810f-9b5bbf2931b2', 'b4170868-cef0-424f-8eb9-be0622e8e8e3'),
         3: Game('My Clone Army', '74ee0b5b-775e-4bee-974f-63e7f4d5bacb', 'fe693b26-b342-4159-8808-15e3ff7f8767'),
         4: Game('Train Miner', '82647f43-3f87-402d-88dd-09a90025313f', 'c4480ac7-e178-4973-8061-9ed5b2e17954'),
+        5: Game('Merge Away', '8d1cc2ad-e097-4b86-90ef-7a27e19fb833', 'dc128d28-c45b-411c-98ff-ac7726fbaea4'),
+        6: Game('Twerk Race', '61308365-9d16-4040-8bb0-2f4a4c69074c', '61308365-9d16-4040-8bb0-2f4a4c69074c'),
+        7: Game('Polysphere', '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71', '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71')
     }
 
     def __init__(self):
@@ -105,6 +108,7 @@ class ClientManager:
 
 class PromoCodeGenerator:
     def __init__(self, game_id: int):
+        self.game_id = game_id
         self.game_repo = GameRepository()
         self.client_manager = ClientManager()
         self.game = self.game_repo.get_game(game_id)
@@ -125,12 +129,25 @@ class PromoCodeGenerator:
             return promo_code
 
 
-async def test():
-    game_id = 1
-    key_count = 4
-
+async def generate(game_id, key_count):
     generator = PromoCodeGenerator(game_id)
     promo_codes = await generator.generate_promo_codes(key_count)
+    return promo_codes
+
+
+async def test():
+    generator = PromoCodeGenerator(7)
+    code = await generator.generate_promo_codes(10)
+    print(code)
+    # key_count = 4
+    # tasks = []
+    # for i in range(6):
+    #     tasks.append(asyncio.create_task(generate(i+1, key_count)))
+    #
+    # results = await asyncio.gather(*tasks)
+    # codes = []
+    # [codes.extend(result) for result in results]
+    # print(codes)
 
 
 if __name__ == "__main__":

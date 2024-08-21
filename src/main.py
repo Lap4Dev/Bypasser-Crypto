@@ -21,6 +21,9 @@ async def setup_middlewares_and_routers():
     dp.include_routers(register_routers())
 
 
+scheduler = AsyncIOScheduler(timezone='Europe/Kiev')
+
+
 async def on_startup():
     from src.utils.bot_commands import set_commands
     await set_commands(bot)
@@ -30,6 +33,9 @@ async def on_startup():
     await bot.set_webhook(settings.TELEGRAM_WEBHOOK_URL,
                           secret_token=settings.WEBHOOK_SECRET,
                           drop_pending_updates=True)
+
+    setup_schedule_tasks(scheduler, bot)
+    scheduler.start()
 
     logger.info('Bot successfully started!')
 
@@ -62,10 +68,6 @@ def main():
     app = setup_web_app()
     setup_bot_webhooks(app)
     setup_application(app, dp, bot=bot)
-
-    scheduler = AsyncIOScheduler()
-    setup_schedule_tasks(scheduler, bot)
-    scheduler.start()
 
     web.run_app(app, host=settings.WEB_SERVER_HOST, port=settings.WEB_SERVER_PORT)
 
