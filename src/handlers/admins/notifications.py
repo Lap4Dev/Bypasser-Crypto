@@ -20,7 +20,7 @@ class Notification(StatesGroup):
 async def send_all(message: Message, state: FSMContext, session):
     user_repo = SqlAlchemyUserRepository(session)
     user_id = message.from_user.id
-    if not user_repo.is_admin(user_id):
+    if not await user_repo.is_admin(user_id):
         return
 
     text = message.text[len(CMD_SEND_ALL) + 1:]
@@ -35,7 +35,7 @@ async def send_all(message: Message, state: FSMContext, session):
 @router.callback_query(Notification.confirm, F.data == CD_CONFIRM_SENDING)
 async def confirm_sending(query: CallbackQuery, state: FSMContext, session, bot: Bot):
     user_repo = SqlAlchemyUserRepository(session)
-    if not user_repo.is_admin(query.from_user.id):
+    if not await user_repo.is_admin(query.from_user.id):
         await state.clear()
         return
 
