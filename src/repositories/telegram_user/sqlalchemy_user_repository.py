@@ -63,7 +63,7 @@ class SqlAlchemyUserRepository(IUserRepository):
         :return: The value of the specified field for the user.
         """
         user = await self.session.execute(
-            select(getattr(self.model, field_name)).filter_by(chat_id=user_id)
+            select(getattr(self.model, field_name)).filter_by(user_id=user_id)
         )
         return user.scalar_one_or_none()
 
