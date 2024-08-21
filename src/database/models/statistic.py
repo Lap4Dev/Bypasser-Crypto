@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy import ForeignKey, String, Integer
+from sqlalchemy import ForeignKey, String, Integer, Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.database.models.base_model import Base
 
@@ -15,3 +15,7 @@ class Statistic(Base):
     value: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
     user: Mapped["TelegramUser"] = relationship("TelegramUser", back_populates="statistics")
+
+    __table_args__ = (
+        Index('unique_user_statistic', 'user_id', 'name', unique=True),
+    )

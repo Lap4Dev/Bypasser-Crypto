@@ -44,7 +44,7 @@ class SqlAlchemyStatisticRepository(IStatisticRepository):
     async def get_or_create(self, user_id: int, name: str) -> Statistic:
         stmt = select(Statistic).where(Statistic.user_id == user_id, Statistic.name == name)
         try:
-            statistic = (await self.session.execute(stmt)).scalar_one()
+            statistic = (await self.session.execute(stmt)).scalars().first()
         except NoResultFound:
             statistic = Statistic(user_id=user_id, name=name, value=0)
             self.session.add(statistic)
