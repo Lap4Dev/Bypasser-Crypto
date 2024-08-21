@@ -8,9 +8,13 @@ services:
       context: .
     environment:
       - ENV_FILE=.prod.env
+      - CERT_PEM_PATH=/etc/letsencrypt/live/bypasscrypto.online/fullchain.pem
+      - CERT_KEY_PATH=/etc/letsencrypt/live/bypasscrypto.online/privkey.pem
     working_dir: "/bot"
     volumes:
       - .:/bot
+      - /etc/letsencrypt/live/bypasscrypto.online/fullchain.pem:/etc/letsencrypt/live/bypasscrypto.online/fullchain.pem
+      - /etc/letsencrypt/live/bypasscrypto.online/privkey.pem:/etc/letsencrypt/live/bypasscrypto.online/privkey.pem
     command: bash -c "alembic upgrade head && python3 -m src.main"
     restart: always
     env_file:

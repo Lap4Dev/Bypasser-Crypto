@@ -45,8 +45,8 @@ class Settings(BaseSettings):
     MEMEFI_REF_LINK: str = 'https://t.me/memefi_coin_bot?start=r_fe9aae9648'
 
     PRODUCTION: bool = False
-    CERT_KEY_PATH: str | None = None
-    CERT_PEM_PATH: str | None = None
+    CERT_KEY_PATH: str | None = os.getenv('CERT_KEY_PATH')
+    CERT_PEM_PATH: str | None = os.getenv('CERT_PEM_PATH')
 
     @property
     def TELEGRAM_WEBHOOK_URL(self) -> str:
