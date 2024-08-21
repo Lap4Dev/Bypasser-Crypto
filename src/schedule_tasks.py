@@ -95,7 +95,7 @@ async def hamster_claimer():
 def setup_schedule_tasks(scheduler: AsyncIOScheduler, bot: Bot):
     scheduler.add_job(scheduled_hamster_task, 'interval', minutes=1)
     scheduler.add_job(hamster_claimer, 'interval', hours=3)
-    scheduler.add_job(scheduled_reset_keys_used, 'cron', hour=23, minute=0)
-    scheduler.add_job(scheduled_backup_db, 'cron', hour=0, minute=0, kwargs={'bot': bot})
-    scheduler.add_job(update_verification_status, 'cron', hour=1, minute=0, kwargs={'bot': bot})
+    scheduler.add_job(scheduled_reset_keys_used, 'cron', hour=0, minute=0)
+    scheduler.add_job(scheduled_backup_db, 'cron', hour=1, minute=0, kwargs={'bot': bot})
+    scheduler.add_job(update_verification_status, 'cron', hour=2, minute=0, kwargs={'bot': bot})
     logger.info('Jobs successfully initialized !')
