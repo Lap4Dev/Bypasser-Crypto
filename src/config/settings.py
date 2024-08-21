@@ -44,6 +44,10 @@ class Settings(BaseSettings):
     HAMSTER_REF_LINK: str = 'https://t.me/hamster_kombaT_bot/start?startapp=kentId761299691'
     MEMEFI_REF_LINK: str = 'https://t.me/memefi_coin_bot?start=r_fe9aae9648'
 
+    PRODUCTION: bool = False
+    CERT_KEY_PATH: str | None = None
+    CERT_PEM_PATH: str | None = None
+
     @property
     def TELEGRAM_WEBHOOK_URL(self) -> str:
         return f'{self.BASE_WEBHOOK_URL}{self.WEBHOOK_PATH}'
@@ -70,3 +74,6 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+if settings.PRODUCTION:
+    if not (settings.CERT_PEM_PATH or settings.CERT_KEY_PATH):
+        raise Exception("CERT_PEM_PATH and CERT_KEY_PATH required for production")

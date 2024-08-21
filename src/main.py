@@ -69,7 +69,14 @@ def main():
     setup_bot_webhooks(app)
     setup_application(app, dp, bot=bot)
 
-    web.run_app(app, host=settings.WEB_SERVER_HOST, port=settings.WEB_SERVER_PORT)
+    if settings.PRODUCTION:
+        import ssl
+        ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+        ssl_context.load_cert_chain(settings.CERT_PEM_PATH, settings.CERT_KEY_PATH)
+
+        web.run_app(app, host=settings.WEB_SERVER_HOST, port=settings.WEB_SERVER_PORT, ssl_context=ssl_context)
+    else:
+        web.run_app(app, host=settings.WEB_SERVER_HOST, port=settings.WEB_SERVER_PORT)
 
 
 if __name__ == '__main__':
