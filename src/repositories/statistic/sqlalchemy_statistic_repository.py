@@ -45,6 +45,8 @@ class SqlAlchemyStatisticRepository(IStatisticRepository):
         stmt = select(Statistic).where(Statistic.user_id == user_id, Statistic.name == name)
         try:
             statistic = (await self.session.execute(stmt)).scalars().first()
+            if statistic is None:
+                raise NoResultFound
         except NoResultFound:
             statistic = Statistic(user_id=user_id, name=name, value=0)
             self.session.add(statistic)
