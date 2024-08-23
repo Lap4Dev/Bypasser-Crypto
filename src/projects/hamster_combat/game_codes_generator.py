@@ -22,7 +22,9 @@ class GameRepository:
         4: Game('Train Miner', '82647f43-3f87-402d-88dd-09a90025313f', 'c4480ac7-e178-4973-8061-9ed5b2e17954'),
         5: Game('Merge Away', '8d1cc2ad-e097-4b86-90ef-7a27e19fb833', 'dc128d28-c45b-411c-98ff-ac7726fbaea4'),
         6: Game('Twerk Race', '61308365-9d16-4040-8bb0-2f4a4c69074c', '61308365-9d16-4040-8bb0-2f4a4c69074c'),
-        7: Game('Polysphere', '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71', '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71')
+        7: Game('Polysphere', '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71', '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71'),
+        8: Game('Mow And Trim', 'ef319a80-949a-492e-8ee0-424fb5fc20a6', 'ef319a80-949a-492e-8ee0-424fb5fc20a6'),
+        9: Game('Mud Racing', '8814a785-97fb-4177-9193-ca4180ff9da8', '8814a785-97fb-4177-9193-ca4180ff9da8'),
     }
 
     def __init__(self):
@@ -132,16 +134,18 @@ class PromoCodeGenerator:
 async def generate(game_id, key_count):
     generator = PromoCodeGenerator(game_id)
     promo_codes = await generator.generate_promo_codes(key_count)
+    print(promo_codes)
     return promo_codes
 
 
 async def test():
-    generator = PromoCodeGenerator(7)
-    code = await generator.generate_promo_codes(10)
-    print(code)
-    # key_count = 4
+    # generator = PromoCodeGenerator(7)
+    # code = await generator.generate_promo_codes(10)
+    # print(code)
+    await generate(8, 1)
+    # key_count = 1
     # tasks = []
-    # for i in range(6):
+    # for i in range(7):
     #     tasks.append(asyncio.create_task(generate(i+1, key_count)))
     #
     # results = await asyncio.gather(*tasks)
