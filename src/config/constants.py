@@ -60,7 +60,7 @@ ERROR_IMAGE_NAME = 'something_error.webp'
 HAMSTER_GAMES = [
     (1, 'Riding Extreme 3D', RIDING_EXTREME_IMAGE_NAME),
     (2, 'Chain Cube 2048', CUBE_IMAGE_NAME),
-    (3, 'My Clone Army', CLONE_ARMY_IMAGE_NAME),
+    # (3, 'My Clone Army', CLONE_ARMY_IMAGE_NAME),
     (4, 'Train Miner', MINER_IMAGE_NAME),
     (5, 'Merge Away', HAMSTER_IMAGE_NAME),
     (6, 'Twerk Race', HAMSTER_IMAGE_NAME),
@@ -72,7 +72,7 @@ HAMSTER_GAMES = [
 # Статистика использования ключей (Key Usage Statistics)
 HAMSTER_RIDING_KEYS_USED = 'hamster_riding_keys_used'
 HAMSTER_CUBE_KEYS_USED = 'hamster_cube_keys_used'
-HAMSTER_CLONE_KEYS_USED = 'hamster_clone_keys_used'
+# HAMSTER_CLONE_KEYS_USED = 'hamster_clone_keys_used'
 HAMSTER_MINER_KEYS_USED = 'hamster_miner_keys_used'
 HAMSTER_MERGE_AWAY_KEYS_USED = 'hamster_merge_away_keys_used'
 HAMSTER_TWERK_RACE_KEYS_USED = 'hamster_twerk_race_keys_used'
@@ -84,7 +84,7 @@ HAMSTER_MUD_RACING_KEYS_USED = 'hamster_mud_racing_keys_used'
 DB_STATISTIC_HAMSTER_GAMES = {
     1: HAMSTER_RIDING_KEYS_USED,
     2: HAMSTER_CUBE_KEYS_USED,
-    3: HAMSTER_CLONE_KEYS_USED,
+    # 3: HAMSTER_CLONE_KEYS_USED,
     4: HAMSTER_MINER_KEYS_USED,
     5: HAMSTER_MERGE_AWAY_KEYS_USED,
     6: HAMSTER_TWERK_RACE_KEYS_USED,
