@@ -28,6 +28,10 @@ async def send_keys_limit_message(query: CallbackQuery, keys_used: int, keys_lim
     await query.message.edit_media(media=media, reply_markup=inline.go_back_to(go_to=c.CD_HAMSTER_KEY))
 
 
+def find_game_by_id(game_id):
+    return next((game for game in c.HAMSTER_GAMES if game[0] == game_id), None)
+
+
 @router.callback_query(F.data == c.CD_HAMSTER_KEY)
 async def get_hamster_games(query: CallbackQuery):
     media = create_media(settings.IMAGES_PATH / c.HAMSTER_IMAGE_NAME, t.CHOOSE_HAMSTER_GAME)
@@ -54,10 +58,10 @@ async def hamster_game(query: CallbackQuery, callback_data: HamsterGame, session
         return await query.answer(t.CODE_NOT_FOUND, show_alert=True)
 
     keys_used = await statistic_repo.increment_value(user_id, c.DB_STATISTIC_HAMSTER_GAMES[game_id])
-
+    game = find_game_by_id(game_id)
     media = create_media(
-        settings.IMAGES_PATH / c.HAMSTER_GAMES[game_id - 1][2],
-        t.code_generated_msg(hamster_code.code, c.HAMSTER_GAMES[game_id - 1][1], settings.HAMSTER_REF_LINK,
+        settings.IMAGES_PATH / game[2],
+        t.code_generated_msg(hamster_code.code, game[1], settings.HAMSTER_REF_LINK,
                              keys_used=keys_used, keys_limit=keys_limit)
     )
     await query.message.edit_media(media=media, reply_markup=inline.go_back_to(go_to=c.CD_HAMSTER_KEY))
