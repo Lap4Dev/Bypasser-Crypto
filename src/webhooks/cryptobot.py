@@ -4,10 +4,8 @@ from aiocryptopay.const import InvoiceStatus
 from aiocryptopay.models.update import Update
 from aiohttp import web
 
-from src.database.models.payment import PaymentStatus
 from src.config import logger
 from src.loader import db_helper
-
 from src.schemas import PaymentPayload
 from src.services.subscription_service import SubscriptionService
 from src.utils.bot import send_message_after_success_subscription
