@@ -24,7 +24,7 @@ hamster_claimer_lock = asyncio.Lock()
 async def scheduled_hamster_task():
     if not hamster_task_lock.locked():
         async with hamster_task_lock:
-            min_codes_count = 10
+            min_codes_count = 100
             await hamster_codes_filling_if_necessary(min_codes_count)
 
 
