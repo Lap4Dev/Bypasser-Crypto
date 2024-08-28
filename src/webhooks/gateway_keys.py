@@ -6,6 +6,7 @@ from src.repositories import SqlAlchemyHamsterCodeRepository
 
 
 async def handle_keys(request):
+    logger.info('Get new keys from gateway!')
     result = await request.json()
     secret_key = result.get('secret_key')
     if secret_key != settings.GATEWAY_KEYS_SECRET:
@@ -25,6 +26,7 @@ async def add_keys(keys: dict):
                     await hamster_repo.add_codes(
                         codes={game_id: keys[game_id]}
                     )
+                    logger.info(f'Keys for game_id: {game_id} successfully added!')
                 except Exception as ex:
                     logger.error(f'error add_codes for game_id: {game_id}|: {ex}')
     except Exception as ex:
