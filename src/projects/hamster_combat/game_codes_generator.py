@@ -136,25 +136,5 @@ class PromoCodeGenerator:
 async def generate(game_id, key_count):
     generator = PromoCodeGenerator(game_id)
     promo_codes = await generator.generate_promo_codes(key_count)
-    print(promo_codes)
     return promo_codes
 
-
-# async def test():
-#     # generator = PromoCodeGenerator(7)
-#     # code = await generator.generate_promo_codes(10)
-#     # print(code)
-#     # await generate(8, 1)
-#     key_count = 1
-#     tasks = []
-#     for i in range(1):
-#         tasks.append(asyncio.create_task(generate(i+1, key_count)))
-#     results = await asyncio.gather(*tasks)
-#
-#     codes = []
-#     [codes.extend(result) for result in results]
-#     print(codes)
-#
-#
-# if __name__ == "__main__":
-#     asyncio.run(test())
