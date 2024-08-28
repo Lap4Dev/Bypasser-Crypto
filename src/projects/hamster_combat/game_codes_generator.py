@@ -26,6 +26,7 @@ class GameRepository:
         7: Game('Polysphere', '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71', '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71'),
         8: Game('Mow And Trim', 'ef319a80-949a-492e-8ee0-424fb5fc20a6', 'ef319a80-949a-492e-8ee0-424fb5fc20a6'),
         9: Game('Mud Racing', '8814a785-97fb-4177-9193-ca4180ff9da8', '8814a785-97fb-4177-9193-ca4180ff9da8'),
+        10: Game('Cafe Dash', 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11', 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11')
     }
 
     def __init__(self):
@@ -139,21 +140,21 @@ async def generate(game_id, key_count):
     return promo_codes
 
 
-async def test():
-    # generator = PromoCodeGenerator(7)
-    # code = await generator.generate_promo_codes(10)
-    # print(code)
-    # await generate(8, 1)
-    key_count = 1
-    tasks = []
-    for i in range(1):
-        tasks.append(asyncio.create_task(generate(i+1, key_count)))
-    results = await asyncio.gather(*tasks)
-
-    codes = []
-    [codes.extend(result) for result in results]
-    print(codes)
-
-
-if __name__ == "__main__":
-    asyncio.run(test())
+# async def test():
+#     # generator = PromoCodeGenerator(7)
+#     # code = await generator.generate_promo_codes(10)
+#     # print(code)
+#     # await generate(8, 1)
+#     key_count = 1
+#     tasks = []
+#     for i in range(1):
+#         tasks.append(asyncio.create_task(generate(i+1, key_count)))
+#     results = await asyncio.gather(*tasks)
+#
+#     codes = []
+#     [codes.extend(result) for result in results]
+#     print(codes)
+#
+#
+# if __name__ == "__main__":
+#     asyncio.run(test())

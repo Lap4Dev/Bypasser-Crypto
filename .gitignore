@@ -1,5 +1,7 @@
 # Byte-compiled / optimized / DLL files
+dataSources.xml
 prod_bot.db
+.prodtest.env
 .dev.env
 .prod.env
 ngrok.yml
