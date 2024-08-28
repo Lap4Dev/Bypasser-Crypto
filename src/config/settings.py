@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     CRYPTO_BOT_NETWORK: str = Networks.MAIN_NET
 
     SECRET_ENCODE_KEY: str = 'mysecretkey'
-
+    GATEWAY_KEYS_SECRET: str
     BACKUP_CHANNEL_ID: int | None
     INSTRUCTION_CHANNEL_ID: int
     BOT_LINK: str
@@ -47,6 +47,10 @@ class Settings(BaseSettings):
     PRODUCTION: bool = False
     CERT_KEY_PATH: str | None = os.getenv('CERT_KEY_PATH')
     CERT_PEM_PATH: str | None = os.getenv('CERT_PEM_PATH')
+
+    @property
+    def gateway_keys_endpoint(self) -> str:
+        return '/gatewayKeys'
 
     @property
     def TELEGRAM_WEBHOOK_URL(self) -> str:
