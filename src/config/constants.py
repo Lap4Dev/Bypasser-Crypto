@@ -58,7 +58,7 @@ ERROR_IMAGE_NAME = 'something_error.webp'
 
 # Игры Hamster
 HAMSTER_GAMES = [
-    (1, 'Riding Extreme 3D', RIDING_EXTREME_IMAGE_NAME),
+    # (1, 'Riding Extreme 3D', RIDING_EXTREME_IMAGE_NAME),
     (2, 'Chain Cube 2048', CUBE_IMAGE_NAME),
     # (3, 'My Clone Army', CLONE_ARMY_IMAGE_NAME),
     (4, 'Train Miner', MINER_IMAGE_NAME),
@@ -73,7 +73,7 @@ HAMSTER_GAMES = [
 ]
 
 # Статистика использования ключей (Key Usage Statistics)
-HAMSTER_RIDING_KEYS_USED = 'hamster_riding_keys_used'
+# HAMSTER_RIDING_KEYS_USED = 'hamster_riding_keys_used'
 HAMSTER_CUBE_KEYS_USED = 'hamster_cube_keys_used'
 # HAMSTER_CLONE_KEYS_USED = 'hamster_clone_keys_used'
 HAMSTER_MINER_KEYS_USED = 'hamster_miner_keys_used'
@@ -89,7 +89,7 @@ HAMSTER_ZOOPOLIS_KEYS_USED = 'hamster_zoopolis_keys_used'
 
 # Статистика использования игр
 DB_STATISTIC_HAMSTER_GAMES = {
-    1: HAMSTER_RIDING_KEYS_USED,
+    # 1: HAMSTER_RIDING_KEYS_USED,
     2: HAMSTER_CUBE_KEYS_USED,
     # 3: HAMSTER_CLONE_KEYS_USED,
     4: HAMSTER_MINER_KEYS_USED,
