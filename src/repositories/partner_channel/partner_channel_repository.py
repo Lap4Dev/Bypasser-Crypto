@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .base import IPartnerChannelRepository
@@ -24,4 +24,14 @@ class SqlAlchemyPartnerChannelRepository(IPartnerChannelRepository):
             ) for channel in channels]
         except Exception as ex:
             logger.error(f'Error while getting partner channels: {ex}')
+            return []
+
+    async def remove_by_name(self, name: str):
+        try:
+            await self.session.execute(
+                delete(self.model).where(self.model.name == name)
+            )
+            await self.session.commit()
+        except Exception as ex:
+            logger.error(f'Error while deleting partner channel with name: {name}|: {ex}')
             return []
