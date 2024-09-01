@@ -23,6 +23,8 @@ CHANGE_TOKEN = '♻️ Змінити токен'
 CANCEL = '💢 Скасувати'
 CLOSE = '💢 Закрити'
 CONFIRM_SENDING = '✅ Відправити розсилку'
+AGENT301_PROJECT = 'Новий проект від Дурова 💰🔥'
+
 # Коды действий
 CD_AUTO_HMSTR_CLAIMER = 'hmstr-claimer'
 CD_RUN_AUTO_BOT = 'run-auto-bot'
@@ -109,3 +111,5 @@ PRODUCT_HAMSTER_KOMBAT_CLAIMER = 'Авто БОТ Hamster Kombat'
 # Confidential data names
 NAME_HASHED_TOKEN = 'hashed_token'
 NAME_HAMSTER_TOKEN = 'hamster_token'
+
+NOTIFICATION_BTN_LINK = 'button_link='

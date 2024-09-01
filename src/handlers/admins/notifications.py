@@ -4,9 +4,9 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message, CallbackQuery
 
-from src.config.constants import CMD_SEND_ALL, CD_CONFIRM_SENDING
+from src.config.constants import CMD_SEND_ALL, CD_CONFIRM_SENDING, NOTIFICATION_BTN_LINK, CLOSE
 from src.config.templates import notification_prepear
-from src.keyboards.inline import mailing_confirm, get_close
+from src.keyboards.inline import mailing_confirm, get_close, get_url_kb
 from src.repositories import SqlAlchemyUserRepository
 
 router = Router()
@@ -41,12 +41,18 @@ async def confirm_sending(query: CallbackQuery, state: FSMContext, session, bot:
 
     data = await state.get_data()
     text = data.get('text')
+    link = None
+    if NOTIFICATION_BTN_LINK in text:
+        split_text = text.split(NOTIFICATION_BTN_LINK)
+        text = split_text[0].strip()
+        link = split_text[1].strip()
+
     if not text:
         return
 
     users = await user_repo.get_all_user_ids()
     successfully_sent = 0
-    markup = get_close()
+    markup = get_close() if link is None else get_url_kb(CLOSE, link)
 
     for chat_id in users:
         try:
