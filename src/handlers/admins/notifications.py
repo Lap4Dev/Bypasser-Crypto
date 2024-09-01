@@ -53,7 +53,8 @@ async def confirm_sending(query: CallbackQuery, state: FSMContext, session, bot:
             await bot.send_message(
                 chat_id=chat_id,
                 text=text,
-                reply_markup=markup
+                reply_markup=markup,
+                disable_web_page_preview=True
             )
             successfully_sent += 1
         except:
