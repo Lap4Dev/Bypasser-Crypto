@@ -38,6 +38,14 @@ def get_close():
     )
 
 
+def get_url_kb(text, url):
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text=text, url=url)],
+        ]
+    )
+
+
 def get_hamster_menu(go_to: str = c.CD_MAIN_MENU):
     return InlineKeyboardMarkup(
         inline_keyboard=[
