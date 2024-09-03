@@ -69,8 +69,8 @@ HAMSTER_GAMES = [
     (7, 'Polysphere', HAMSTER_IMAGE_NAME),
     (8, 'Mow And Trim', HAMSTER_IMAGE_NAME),
     # (9, 'Mud Racing', HAMSTER_IMAGE_NAME),
-    (10, 'Cafe Dash', HAMSTER_IMAGE_NAME),
-    (11, 'Gangs Wars', HAMSTER_IMAGE_NAME),
+    # (10, 'Cafe Dash', HAMSTER_IMAGE_NAME),
+    # (11, 'Gangs Wars', HAMSTER_IMAGE_NAME),
     (12, 'Zoopolis', HAMSTER_IMAGE_NAME),
 ]
 
@@ -84,8 +84,8 @@ HAMSTER_TWERK_RACE_KEYS_USED = 'hamster_twerk_race_keys_used'
 HAMSTER_POLYSPHERE_KEYS_USED = 'hamster_polysphere_keys_used'
 HAMSTER_MOW_AND_TRIM_KEYS_USED = 'hamster_mow_and_trim_keys_used'
 # HAMSTER_MUD_RACING_KEYS_USED = 'hamster_mud_racing_keys_used'
-HAMSTER_CAFE_DASH_KEYS_USED = 'hamster_cafe_dash_keys_used'
-HAMSTER_GANGS_WARS_KEYS_USED = 'hamster_gangs_wars_keys_used'
+# HAMSTER_CAFE_DASH_KEYS_USED = 'hamster_cafe_dash_keys_used'
+# HAMSTER_GANGS_WARS_KEYS_USED = 'hamster_gangs_wars_keys_used'
 HAMSTER_ZOOPOLIS_KEYS_USED = 'hamster_zoopolis_keys_used'
 
 
@@ -100,8 +100,8 @@ DB_STATISTIC_HAMSTER_GAMES = {
     7: HAMSTER_POLYSPHERE_KEYS_USED,
     8: HAMSTER_MOW_AND_TRIM_KEYS_USED,
     # 9: HAMSTER_MUD_RACING_KEYS_USED,
-    10: HAMSTER_CAFE_DASH_KEYS_USED,
-    11: HAMSTER_GANGS_WARS_KEYS_USED,
+    # 10: HAMSTER_CAFE_DASH_KEYS_USED,
+    # 11: HAMSTER_GANGS_WARS_KEYS_USED,
     12: HAMSTER_ZOOPOLIS_KEYS_USED
 }
 
