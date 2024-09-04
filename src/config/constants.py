@@ -72,6 +72,8 @@ HAMSTER_GAMES = [
     # (10, 'Cafe Dash', HAMSTER_IMAGE_NAME),
     # (11, 'Gangs Wars', HAMSTER_IMAGE_NAME),
     (12, 'Zoopolis', HAMSTER_IMAGE_NAME),
+    (13, 'Tile Trio', HAMSTER_IMAGE_NAME),
+    (13, 'Fluff Crusade', HAMSTER_IMAGE_NAME)
 ]
 
 # Статистика использования ключей (Key Usage Statistics)
@@ -87,7 +89,8 @@ HAMSTER_MOW_AND_TRIM_KEYS_USED = 'hamster_mow_and_trim_keys_used'
 # HAMSTER_CAFE_DASH_KEYS_USED = 'hamster_cafe_dash_keys_used'
 # HAMSTER_GANGS_WARS_KEYS_USED = 'hamster_gangs_wars_keys_used'
 HAMSTER_ZOOPOLIS_KEYS_USED = 'hamster_zoopolis_keys_used'
-
+HAMSTER_TILE_TRIO_KEYS_USED = 'hamster_tile_trio_keys_used'
+HAMSTER_FLUFF_CRUSADE_KEYS_USED = 'hamster_fluff_crusade_keys_used'
 
 # Статистика использования игр
 DB_STATISTIC_HAMSTER_GAMES = {
@@ -102,7 +105,9 @@ DB_STATISTIC_HAMSTER_GAMES = {
     # 9: HAMSTER_MUD_RACING_KEYS_USED,
     # 10: HAMSTER_CAFE_DASH_KEYS_USED,
     # 11: HAMSTER_GANGS_WARS_KEYS_USED,
-    12: HAMSTER_ZOOPOLIS_KEYS_USED
+    12: HAMSTER_ZOOPOLIS_KEYS_USED,
+    13: HAMSTER_TILE_TRIO_KEYS_USED,
+    14: HAMSTER_FLUFF_CRUSADE_KEYS_USED
 }
 
 # Название продуктов (Product name)

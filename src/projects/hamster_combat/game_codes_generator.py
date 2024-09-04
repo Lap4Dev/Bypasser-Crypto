@@ -28,7 +28,9 @@ class GameRepository:
         # 9: Game('Mud Racing', '8814a785-97fb-4177-9193-ca4180ff9da8', '8814a785-97fb-4177-9193-ca4180ff9da8'),
         # 10: Game('Cafe Dash', 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11', 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11'),
         # 11: Game('Gangs Wars', 'b6de60a0-e030-48bb-a551-548372493523', 'c7821fa7-6632-482c-9635-2bd5798585f9'),
-        12: Game('Zoopolis', 'b2436c89-e0aa-4aed-8046-9b0515e1c46b', 'b2436c89-e0aa-4aed-8046-9b0515e1c46b')
+        12: Game('Zoopolis', 'b2436c89-e0aa-4aed-8046-9b0515e1c46b', 'b2436c89-e0aa-4aed-8046-9b0515e1c46b'),
+        13: Game('Tile Trio', 'e68b39d2-4880-4a31-b3aa-0393e7df10c7', 'e68b39d2-4880-4a31-b3aa-0393e7df10c7'),
+        14: Game('Fluff Crusade', '112887b0-a8af-4eb2-ac63-d82df78283d9', '112887b0-a8af-4eb2-ac63-d82df78283d9')
     }
 
     def __init__(self):
@@ -139,4 +141,3 @@ async def generate(game_id, key_count):
     generator = PromoCodeGenerator(game_id)
     promo_codes = await generator.generate_promo_codes(key_count)
     return promo_codes
-
