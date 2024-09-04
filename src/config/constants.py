@@ -73,7 +73,7 @@ HAMSTER_GAMES = [
     # (11, 'Gangs Wars', HAMSTER_IMAGE_NAME),
     (12, 'Zoopolis', HAMSTER_IMAGE_NAME),
     (13, 'Tile Trio 🔥', HAMSTER_IMAGE_NAME),
-    (13, 'Fluff Crusade 🔥', HAMSTER_IMAGE_NAME)
+    (14, 'Fluff Crusade 🔥', HAMSTER_IMAGE_NAME)
 ]
 
 # Статистика использования ключей (Key Usage Statistics)
