@@ -75,7 +75,8 @@ HAMSTER_GAMES = [
     (13, 'Tile Trio', HAMSTER_IMAGE_NAME),
     (14, 'Fluff Crusade', HAMSTER_IMAGE_NAME),
     (15, 'Stone Age', HAMSTER_IMAGE_NAME),
-    (16, 'Bouncemasters', HAMSTER_IMAGE_NAME)
+    (16, 'Bouncemasters', HAMSTER_IMAGE_NAME),
+    (17, 'Hide Ball', HAMSTER_IMAGE_NAME),
 ]
 
 # Статистика использования ключей (Key Usage Statistics)
@@ -95,6 +96,7 @@ HAMSTER_TILE_TRIO_KEYS_USED = 'hamster_tile_trio_keys_used'
 HAMSTER_FLUFF_CRUSADE_KEYS_USED = 'hamster_fluff_crusade_keys_used'
 HAMSTER_STONE_AGE_KEYS_USED = 'hamster_stone_age_keys_used'
 HAMSTER_BOUNCEMASTER_KEYS_USED = 'hamster_bouncemaster_keys_used'
+HAMSTER_HIDE_BALL_KEYS_USED = 'hamster_hide_ball_keys_used'
 
 # Статистика использования игр
 DB_STATISTIC_HAMSTER_GAMES = {
@@ -113,7 +115,8 @@ DB_STATISTIC_HAMSTER_GAMES = {
     13: HAMSTER_TILE_TRIO_KEYS_USED,
     14: HAMSTER_FLUFF_CRUSADE_KEYS_USED,
     15: HAMSTER_STONE_AGE_KEYS_USED,
-    16: HAMSTER_BOUNCEMASTER_KEYS_USED
+    16: HAMSTER_BOUNCEMASTER_KEYS_USED,
+    17: HAMSTER_HIDE_BALL_KEYS_USED
 }
 
 # Название продуктов (Product name)
