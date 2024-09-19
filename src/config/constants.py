@@ -79,6 +79,7 @@ HAMSTER_GAMES = [
     (17, 'Hide Ball', HAMSTER_IMAGE_NAME),
     (18, 'Pin Out Master', HAMSTER_IMAGE_NAME),
     (19, 'Count Masters', HAMSTER_IMAGE_NAME),
+    (20, 'Infected Frontier', HAMSTER_IMAGE_NAME)
 ]
 
 # Статистика использования ключей (Key Usage Statistics)
@@ -101,6 +102,7 @@ HAMSTER_BOUNCEMASTER_KEYS_USED = 'hamster_bouncemaster_keys_used'
 HAMSTER_HIDE_BALL_KEYS_USED = 'hamster_hide_ball_keys_used'
 HAMSTER_PIN_OUT_MASTER_KEYS_USED = 'hamster_pin_out_keys_used'
 HAMSTER_COUNT_MASTERS_KEYS_USED = 'hamster_count_masters_keys_used'
+HAMSTER_INFECTED_FRONTIER_KEYS_USED = 'hamster_infected_keys_used'
 
 # Статистика использования игр
 DB_STATISTIC_HAMSTER_GAMES = {
@@ -122,7 +124,8 @@ DB_STATISTIC_HAMSTER_GAMES = {
     16: HAMSTER_BOUNCEMASTER_KEYS_USED,
     17: HAMSTER_HIDE_BALL_KEYS_USED,
     18: HAMSTER_PIN_OUT_MASTER_KEYS_USED,
-    19: HAMSTER_COUNT_MASTERS_KEYS_USED
+    19: HAMSTER_COUNT_MASTERS_KEYS_USED,
+    20: HAMSTER_INFECTED_FRONTIER_KEYS_USED
 }
 
 # Название продуктов (Product name)

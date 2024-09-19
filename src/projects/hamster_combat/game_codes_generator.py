@@ -36,6 +36,7 @@ class GameRepository:
         17: Game('Hide Ball', '4bf4966c-4d22-439b-8ff2-dc5ebca1a600', '4bf4966c-4d22-439b-8ff2-dc5ebca1a600'),
         18: Game('Pin Out Master', 'd2378baf-d617-417a-9d99-d685824335f0', 'd2378baf-d617-417a-9d99-d685824335f0'),
         19: Game('Count Masters', '4bdc17da-2601-449b-948e-f8c7bd376553', '4bdc17da-2601-449b-948e-f8c7bd376553'),
+        20: Game('Infected Frontier', 'eb518c4b-e448-4065-9d33-06f3039f0fcb', 'eb518c4b-e448-4065-9d33-06f3039f0fcb')
     }
 
     def __init__(self):
